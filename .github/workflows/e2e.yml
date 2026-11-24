@@ -1,0 +1,32 @@
+name: Testes E2E - Cucumber
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Executar cenários
+        run: npm test
+      - name: Publicar relatórios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-cucumber
+          path: |
+            relatorios/cucumber.html
+            relatorios/cucumber.json
+          if-no-files-found: warn

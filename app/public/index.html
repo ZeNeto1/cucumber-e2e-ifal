@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaskLab | Lista de tarefas</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><span class="eyebrow">TASKLAB · AMBIENTE DIDÁTICO LOCAL</span><h1>Lista de tarefas</h1><p>Cadastre uma tarefa e consulte os itens da sua lista.</p></header>
+    <section class="panel" aria-labelledby="form-title">
+      <h2 id="form-title">Nova tarefa</h2>
+      <form id="task-form">
+        <label for="title">Título da tarefa</label>
+        <div class="form-row"><input id="title" name="titulo" type="text" placeholder="Ex.: Revisar cenários de teste" autocomplete="off"><button type="submit">Adicionar tarefa</button></div>
+      </form>
+      <p role="alert" id="error" hidden></p>
+      <p role="status" id="success" hidden></p>
+    </section>
+    <section class="panel" aria-labelledby="list-title">
+      <div class="list-header"><h2 id="list-title">Tarefas cadastradas</h2><span id="count" data-testid="task-count">Carregando...</span></div>
+      <p id="empty" hidden>Nenhuma tarefa cadastrada.</p>
+      <ul id="tasks" aria-label="Tarefas cadastradas"></ul>
+    </section>
+    <footer>Qualidade de Software · Aplicação de demonstração E2E</footer>
+  </main>
+</body>
+</html>
